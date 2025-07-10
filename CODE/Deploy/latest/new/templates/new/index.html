@@ -1,0 +1,93 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+
+	
+	{% block content %}
+	<body class="index">
+	<div>
+		<div style="background-color: #e9ecef;">
+		<a class="navbar-brand text-dark" style="margin-left: 30px;" href="{% url 'apredict' %}">Enter Details</a>
+		<a class="navbar-brand text-dark" style="margin-left: 1088px;" href="{% url 'feedback' %}">Feedback</a>
+	</div><br>
+	<h1 style="text-align:center; color:cyan; background-color: black;"><b>TELECOM CUSTOMER CHURN</b></h1>
+     <!-- Main Input For Receiving Query to our ML -->
+
+	 <form class="form1 container1" action="{% url 'predict' %}" style="background-color: transparent; box-sizing: border-box;
+	 font-family: proxima_nova_rgregular, Helvetica, Arial, sans-serif;" method="POST">
+	 {% csrf_token %}
+		 <fieldset class="fieldset1">
+			 <legend class="legend1">Enter the Detail</legend>
+
+	 <label class="white"  for=""> TENURE_IN_MONTHS </label>
+	 <input type="number" class="space form-control" step="0.01" name="TENURE_IN_MONTHS" placeholder="TENURE_IN_MONTHS" required="required" /><br><br>
+
+
+	 <label class="white"  for="">OFFERS</label>
+	 <select class="space form-control" name="OFFERS" id="OFFERS">
+<option value=0>NONE</option>
+<option value=1>OFFER-A</option>
+<option value=2>OFFER-B</option>
+<option value=3>OFFER-C</option>
+<option value=4>OFFER-D</option>
+<option value=5>OFFER-E</option>
+</select>
+
+
+
+<label class="white"  for="">INTERNET_TYPE</label>
+<select class="space form-control" name="INTERNET_TYPE" id="INTERNET_TYPE">
+<option value=0>CABLE</option>
+<option value=1>DIGITAL SUBSCRIBER LINE</option>
+<option value=2>FIBER OPTIC</option>
+</select>
+
+
+<label class="white"  for="">AVERAGE_MONTHLY_GB_DOWNLOAD</label>
+<input type="number" class="space form-control" step="0.000001" name="AVERAGE_MONTHLY_GB_DOWNLOAD" placeholder="AVERAGE_MONTHLY_GB_DOWNLOAD" required="required" /><br>
+
+<label class="white"  for="">UNLIMITED_DATA</label>
+<select class="space form-control" name="UNLIMITED_DATA" id="UNLIMITED_DATA">
+<option value=0>NO</option>
+<option value=1>YES</option>
+</select>
+
+<label class="white"  for="">CONTRACT</label>
+<select class="space form-control" name="CONTRACT" id="CONTRACT">
+<option value=0>MONTH TO MONTH</option>
+<option value=1>ONE YEAR CONTRACT</option>
+<option value=2>TWO YEARS CONTRACT</option>
+</select>
+
+<label class="white"  for="">PAYMENT_METHOD</label>
+<select class="space form-control" name="PAYMENT_METHOD" id="PAYMENT_METHOD">
+<option value=0>BANK WITHDRAWAL</option>
+<option value=1>CREDIT CARD</option>
+<option value=2>MAILED CHECK</option>
+</select>
+
+<label class="white"  for="">MONTHLY_CHARGE</label>
+<input type="number" class="space form-control" step="0.000001" name="MONTHLY_CHARGE" placeholder="MONTHLY_CHARGE" required="required" /><br>
+
+<label class="white"  for="">TOTAL_CHARGES</label>
+<input type="number" class="space form-control" step="0.000001" name="TOTAL_CHARGES" placeholder="TOTAL_CHARGES" required="required" /><br>
+
+<label class="white"  for="">TOTAL_EXTRA_DATA_CHARGES</label>
+<input type="number" class="space form-control" step="0.000001" name="TOTAL_EXTRA_DATA_CHARGES" placeholder="TOTAL_EXTRA_DATA_CHARGES" required="required" /><br>
+
+	 <input type="hidden" name="Customer_Status" value="data">
+	 <input class="input1" type="submit" value="Submit"><br>
+		 </fieldset>
+	 </form>
+
+
+   <br>
+   <br>
+<div  style="background:chartreuse;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+ {% endblock content %}
+</body>
+</html>

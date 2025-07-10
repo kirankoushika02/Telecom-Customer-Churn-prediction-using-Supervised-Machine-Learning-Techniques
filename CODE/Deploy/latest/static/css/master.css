@@ -1,0 +1,16 @@
+  .white{
+   color:yellow;
+   text-shadow: 3px 3px black;
+   font-weight: 800;
+   }
+   .space{
+   color: black;
+   margin:10px 30px;
+   padding:10px 10px;
+   font: initial;
+   background: lightyellow;
+   width:500px
+   }
+   .gap{
+   padding:10px 20px;
+   }

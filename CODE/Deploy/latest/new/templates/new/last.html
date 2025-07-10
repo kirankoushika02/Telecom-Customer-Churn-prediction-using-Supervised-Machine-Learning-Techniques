@@ -1,0 +1,60 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div>
+		<div style="background-color: #e9ecef;">
+		    <a class="navbar-brand text-dark" style="margin-left: 30px;" href="{% url 'details_all' %}">All</a>
+		    <a class="navbar-brand text-dark" style="margin-left: 10px;" href="{% url 'details_last' %}">Last</a>
+	    </div>
+        <br>
+        <center>
+        <div class="feed_table">
+            <table class="table" border="default" style="table-layout: fixed;">
+                <tr>
+                    <th>TENURE_IN_MONTHS</th><th>OFFERS</th><th>INTERNET_TYPE</th>
+                    <th>AVERAGE_MONTHLY_GB_DOWNLOAD</th><th>UNLIMITED_DATA</th><th>CONTRACT</th>
+                    <th>PAYMENT_METHOD</th>
+                    <th>MONTHLY_CHARGE</th><th>TOTAL_CHARGES</th><th>TOTAL_EXTRA_DATA_CHARGES</th>
+                    <th>Customer_Status</th>
+                    </tr>
+                    <tr>
+                        <td>{{model.TENURE_IN_MONTHS}}</td><td>{{model.OFFERS}}</td>
+                        <td>{{model.INTERNET_TYPE}}</td><td>{{model.AVERAGE_MONTHLY_GB_DOWNLOAD}}</td>
+                        <td>{{model.UNLIMITED_DATA}}</td><td>{{model.CONTRACT}}</td>
+                        <td>{{model.PAYMENT_METHOD}}</td><td>{{model.MONTHLY_CHARGE}}</td>
+                        <td>{{model.TOTAL_CHARGES}}</td><td>{{model.TOTAL_EXTRA_DATA_CHARGES}}</td>
+                        <td>{{model.Customer_Status}}</td>
+                    </tr>  
+            </table>
+        </div>
+        </center>
+        <br><br>
+        <div>
+        <center>
+            <form action="{% url 'details_last' %}" method="POST">
+                {% csrf_token %}
+                {% for f in form %}
+                <p>
+                    {{ f.label_tag }}<br>
+                    {{ f }}
+                    
+                </p>
+                {% endfor %}
+                <br>
+            
+                {% if not msg %}
+                    <input type="submit">
+                {% else %}
+                    {{msg}}
+                {% endif %}
+            
+            </form>
+        </center>
+        </div>
+        
+        
+{% endblock content %}
+</body>
+</html>
